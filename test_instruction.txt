@@ -1,0 +1,187 @@
+============================================================
+                  HOSPITAL MANAGEMENT SYSTEM
+============================================================
+  1.  Admit Patient
+  2.  Transfer Patient
+  3.  Discharge Patient
+  4.  Release Bed
+  5.  View Department Details
+  6.  View Ward Details
+  7.  View All Patients
+  8.  Generate Statistical Report
+  9.  Exit System
+============================================================
+
+========== ADMIT PATIENT ==========
+Enter Department ID (1-3): 1
+Enter Ward Number (101/102/201/301): 101
+Enter Bed Number (1-3): 1
+Enter Patient ID: 1001
+Enter Patient Name: John
+
+✓ PATIENT ADMITTED SUCCESSFULLY!
+  Department: Cardiology Department
+  Ward: 101 - Cardiology General Ward
+  Bed: 1
+  Patient: John (ID: 1001)
+
+  ========== TRANSFER PATIENT ==========
+Enter Patient ID to transfer: 1001
+Enter New Department ID (1-3): 2
+Enter New Ward Number: 201
+Enter New Bed Number: 2
+
+✓ PATIENT TRANSFERRED SUCCESSFULLY!
+  From: John → Ward 101 → Bed 1
+  To: Department 2 → Ward 201 → Bed 2
+
+  ========== DISCHARGE PATIENT ==========
+Enter Patient ID to discharge: 1001
+
+Patient Found:
+  Name: John
+  Department: Surgery Department
+  Ward: 201
+  Bed: 2
+
+Confirm discharge? (y/n): y
+
+✓ PATIENT DISCHARGED SUCCESSFULLY!
+
+============================================================
+                  HOSPITAL STATISTICAL REPORT
+============================================================
+Date: Mon Jan 15 10:30:00 2024
+============================================================
+HOSPITAL OVERVIEW
+  Total Departments:   3
+  Total Wards:         4
+  Total Beds:          10
+  Total Patients:      2
+  Overall Occupancy:   20.0%
+============================================================
+DEPARTMENT BREAKDOWN
+  Cardiology Department   0.0% occupancy
+  Surgery Department      33.3% occupancy
+  Pediatrics Department   0.0% occupancy
+============================================================
+
+Hospital Ward Management System - Test Instructions
+============================================================
+
+1. COMPILATION TEST
+------------------------------------------------------------
+Command: make
+Expected: Successful compilation, executable 'hospital' created
+
+Or: gcc -Iinclude -o hospital src/main.c src/core/*.c src/services/*.c src/reports/*.c src/utils/*.c
+Expected: No errors or warnings
+
+
+2. FUNCTIONAL TESTS
+------------------------------------------------------------
+
+TEST 1: System Initialization
+Action: Run ./hospital
+Expected: Shows "Hospital initialized successfully!", displays 3 departments, 4 wards, 10 beds
+
+TEST 2: Admit Patient - Normal Case
+Action: Select 1, enter Department 1, Ward 101, Bed 1, Patient ID 1001, Name John
+Expected: Shows "PATIENT ADMITTED SUCCESSFULLY!"
+
+TEST 3: Admit Patient - Bed Already Occupied
+Action: Select 1, enter Department 1, Ward 101, Bed 1, Patient ID 1002, Name Jane
+Expected: Shows "ERROR: Bed 1 is already occupied"
+
+TEST 4: View All Patients
+Action: Select 7
+Expected: Shows John's information
+
+TEST 5: Transfer Patient - Normal Case
+Action: Select 2, enter Patient ID 1001, New Department 2, New Ward 201, New Bed 2
+Expected: Shows "PATIENT TRANSFERRED SUCCESSFULLY!"
+
+TEST 6: View Department Details
+Action: Select 5
+Expected: Shows all departments with detailed information
+
+TEST 7: View Ward Details
+Action: Select 6
+Expected: Shows all wards with detailed information
+
+TEST 8: Discharge Patient - Normal Case
+Action: Select 3, enter Patient ID 1001, confirm y
+Expected: Shows "PATIENT DISCHARGED SUCCESSFULLY!"
+
+TEST 9: Discharge Patient - Patient Not Found
+Action: Select 3, enter Patient ID 9999
+Expected: Shows "ERROR: Patient ID 9999 not found"
+
+TEST 10: Release Bed - Normal Case
+Action: First admit a patient to bed 101-2, then select 4, enter Department 1, Ward 101, Bed 2, confirm y
+Expected: Shows "Bed released successfully!"
+
+TEST 11: Generate Statistical Report
+Action: Select 8
+Expected: Shows statistical report, creates hospital_report.txt file
+
+TEST 12: Exit System
+Action: Select 9
+Expected: Shows memory cleanup information, program exits normally
+
+
+3. BOUNDARY TESTS
+------------------------------------------------------------
+
+TEST 13: Invalid Department ID
+Action: Select 1, enter Department ID 0 or 4
+Expected: Shows "ERROR: Please enter a number between 1 and 3"
+
+TEST 14: Invalid Ward Number
+Action: Select 1, enter Ward Number 999
+Expected: Shows "ERROR: Ward not found"
+
+TEST 15: Invalid Bed Number
+Action: Select 1, enter Bed Number 0 or 10
+Expected: Shows "ERROR: Please enter a number between 1 and 3"
+
+TEST 16: Duplicate Patient ID
+Action: Admit Patient 1001, then admit another patient with same ID 1001
+Expected: System allows but should be avoided in practice
+
+
+4. COMPLETE WORKFLOW TEST
+------------------------------------------------------------
+
+Steps:
+1. Start the program
+2. Admit Patient A (Dept 1, Ward 101, Bed 1, ID 1001, Name John)
+3. Admit Patient B (Dept 2, Ward 201, Bed 1, ID 1002, Name Sarah)
+4. Admit Patient C (Dept 3, Ward 301, Bed 1, ID 1003, Name Mike)
+5. View all patients (should show 3 patients)
+6. Transfer Patient 1001 to Dept 2, Ward 201, Bed 3
+7. View department statistics (confirm Dept 1 decreased by 1, Dept 2 increased by 1)
+8. Discharge Patient 1002
+9. Generate statistical report
+10. Exit system
+
+Expected: All operations normal, no crashes, memory cleanup complete on exit
+
+
+5. ACCEPTANCE CRITERIA
+------------------------------------------------------------
+
+1. All menu functions work correctly
+2. Linked list operations correct, data can be added/deleted/modified correctly
+3. Statistical report data is accurate
+4. All memory is freed upon exit
+5. Program runs stable with no crashes
+
+
+6. TEST CONCLUSION
+------------------------------------------------------------
+
+Test Date: _____________
+Tester: _____________
+Result: PASS / FAIL
+Remarks: _____________
