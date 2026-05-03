@@ -1,0 +1,175 @@
+Hospital Ward Management System - Memory Cleanup Test Record
+============================================================
+
+Test Date: _____________
+Tester: _____________
+Operating System: Linux / Mac / Windows
+Compiler: GCC
+
+
+1. BASIC MEMORY TESTS
+------------------------------------------------------------
+
+TEST SCENARIO 1: Start and Exit Immediately
+Steps:
+1. Start program ./hospital
+2. Select 9 to exit immediately
+
+Expected Results:
+- Freed 10 beds
+- Freed 4 wards
+- Freed 3 departments
+- No memory leaks
+
+Actual Results:
+Beds Freed: _____
+Wards Freed: _____
+Departments Freed: _____
+Status: PASS / FAIL
+
+
+TEST SCENARIO 2: Admit 3 Patients Then Exit
+Steps:
+1. Start program
+2. Admit 3 patients in different departments
+3. Select 9 to exit
+
+Expected Results:
+- All beds properly freed
+- No memory leaks
+
+Actual Results:
+Beds Freed: _____
+Wards Freed: _____
+Departments Freed: _____
+Status: PASS / FAIL
+
+
+TEST SCENARIO 3: Perform All Operations Then Exit
+Steps:
+1. Start program
+2. Admit 3 patients
+3. Transfer 1 patient
+4. Discharge 1 patient
+5. Release 1 bed
+6. Generate statistical report
+7. Select 9 to exit
+
+Expected Results:
+- All memory properly freed
+- No memory leaks
+
+Actual Results:
+Beds Freed: _____
+Wards Freed: _____
+Departments Freed: _____
+Status: PASS / FAIL
+
+
+2. VALGRIND MEMORY DETECTION (Linux)
+------------------------------------------------------------
+
+Test Command:
+valgrind --leak-check=full --show-leak-kinds=all ./hospital
+
+Operations Performed:
+1. Admit 3 patients
+2. Transfer 1 patient
+3. Discharge 1 patient
+4. Generate statistical report
+5. Exit
+
+Valgrind Output:
+------------------------------------------------------------
+[Paste Valgrind output here]
+------------------------------------------------------------
+
+Expected Result:
+HEAP SUMMARY:
+   in use at exit: 0 bytes in 0 blocks
+   total heap usage: ___ allocs, ___ frees, ___ bytes allocated
+
+All heap blocks were freed -- no leaks are possible
+
+Actual Result:
+definitely lost: 0 bytes in 0 blocks / Has leaks
+Status: PASS / FAIL
+
+
+3. MEMORY STATISTICS REPORT
+------------------------------------------------------------
+
+When exiting with option 9, the program displays:
+
+============================================================
+                    MEMORY CLEANUP
+============================================================
+
+✓ Memory Cleanup Complete:
+  - Freed ___ beds
+  - Freed ___ wards
+  - Freed ___ departments
+
+============================================================
+                  MEMORY USAGE REPORT
+============================================================
+Total Allocations:   ___
+Total Deallocations: ___
+Current Active:      0
+Status: ✓ NO MEMORY LEAKS DETECTED
+============================================================
+
+
+4. MULTIPLE RUN TESTS
+------------------------------------------------------------
+
+Run the program 5 times consecutively, performing different operations:
+
+Run 1: Start and exit immediately → Memory normal
+Run 2: Admit 2 patients then exit → Memory normal
+Run 3: Admit, transfer, discharge then exit → Memory normal
+Run 4: Perform all operations then exit → Memory normal
+Run 5: Random operations then exit → Memory normal
+
+Result: All 5 PASS / Some FAILED
+
+
+5. MEMORY LEAK CHECKLIST
+------------------------------------------------------------
+
+[ ] All malloc has corresponding free
+[ ] Linked list traversal correct, no nodes missed
+[ ] All memory freed before exit
+[ ] Valgrind reports 0 leaks
+[ ] Memory usage stable during program execution
+[ ] No wild pointer access
+[ ] No double free errors
+
+
+6. ISSUES LOG
+------------------------------------------------------------
+
+Issue Description:
+_________________________________________________
+_________________________________________________
+
+Solution:
+_________________________________________________
+_________________________________________________
+
+
+7. TEST CONCLUSION
+------------------------------------------------------------
+
+Memory Cleanup Test: PASS / FAIL
+
+Remarks:
+_________________________________________________
+_________________________________________________
+
+
+8. SIGNATURES
+------------------------------------------------------------
+
+Tester Signature: _________________
+Date: _________________
