@@ -141,7 +141,7 @@ void displayAllPatients(Department* hospital) {
     }
     
     if (count == 0) {
-        printf("                    当前没有住院病人\n");
+        printf("当前没有住院病人\n");
     }
     
     printf("============================================================\n");
